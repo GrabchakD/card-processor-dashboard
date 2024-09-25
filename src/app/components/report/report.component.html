@@ -1,0 +1,39 @@
+<table class="table text-center mb-5">
+  <thead class="table-dark">
+  <tr>
+    <th scope="col">Кількість клієнтів</th>
+    <th scope="col">Кількість замовлень</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{report.clientsCount}}</td>
+    <td>{{report.ordersCount}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div>
+  <h2 class="text-center">Таблиця операторів<a class="pl-5">
+    <button type="button" class="btn btn-success btn-sm" (click)="generateCsv()">
+      Отримати в CSV
+    </button>
+  </a>
+  </h2>
+  <table class="table text-center my-4">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">Ім’я оператора</th>
+      <th scope="col">Логін</th>
+      <th scope="col">Кількість замовленнь за ниншній місяць</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let operator of report.operators">
+      <th scope="row">{{operator.fullName}}</th>
+      <td>{{operator.login}}</td>
+      <td>{{operator.ordersCount}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

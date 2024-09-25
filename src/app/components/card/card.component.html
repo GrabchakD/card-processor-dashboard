@@ -1,0 +1,93 @@
+<div class="cards">
+  <table class="table text-center">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">Код</th>
+      <th scope="col">Назва типу картки</th>
+      <th scope="col">BIN</th>
+      <th scope="col">Статус</th>
+      <th scope="col">ПІБ оператора</th>
+      <th scope="col"><button type="button" class="btn btn-success btn-sm" (click)="openCreateModal(contentCreate)">
+        Створити
+      </button></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let card of cards">
+      <th scope="row">{{card.id}}</th>
+      <td>{{card.type}}</td>
+      <td>{{card.bin}}</td>
+      <td>{{card.status}}</td>
+      <td>{{card.operatorFullName}}</td>
+      <td>
+        <button type="button" class="btn btn-warning btn-sm" (click)="openUpdateModal(contentEdit, card)">
+          Редагувати
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Edit Modal -->
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editCard">Редагування типу картки</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="updateForm" name="edit-card">
+      <div class="form-group">
+        <label for="type">Тип картки</label>
+        <input class="form-control" id="type" formControlName="type">
+      </div>
+      <div class="form-group">
+        <label for="bin">BIN</label>
+        <input class="form-control" id="bin" formControlName="bin">
+      </div>
+      <div class="form-group">
+        <label for="status">Статус</label>
+        <input class="form-control" id="status" formControlName="status">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+    <button type="button" class="btn btn-success" (click)="update()">Зберегти</button>
+  </div>
+</ng-template>
+
+<!--Create Modal-->
+<ng-template #contentCreate let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="createCard">Створення нового типу картки</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form name="create-card">
+      <div class="form-group">
+        <label for="newType">Тип картки</label>
+        <input class="form-control" id="newType" name="type" [(ngModel)]="card.type">
+      </div>
+      <div class="form-group">
+        <label for="newBin">BIN</label>
+        <input class="form-control" id="newBin" name="BIN" [(ngModel)]="card.bin">
+      </div>
+      <div class="form-group">
+        <label for="newStatus">Статус</label>
+        <select class="form-control" id="newStatus" name="status" [(ngModel)]="card.status">
+          <option>INACTIVE</option>
+          <option>ACTIVE</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+    <button type="button" class="btn btn-success" (click)="save()">Зберегти</button>
+  </div>
+</ng-template>

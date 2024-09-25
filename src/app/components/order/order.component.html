@@ -1,0 +1,36 @@
+<div class="orders">
+<table class="table">
+  <thead class="table-dark">
+  <tr>
+    <th scope="col">Порядковий номер</th>
+    <th scope="col">Дата створення</th>
+    <th scope="col">Прізвище українською</th>
+    <th scope="col">Ім’я українською</th>
+    <th scope="col">Прізвище латиною</th>
+    <th scope="col">Ім’я латиною</th>
+    <th scope="col">ПІБ оператора</th>
+    <th scope="col">Назва типу картки</th>
+    <th scope="col">Номер карти</th>
+    <th scope="col"><button type="button" class="btn btn-success btn-sm" (click)="generateCardNumbers()">
+      Згенерувати<br>
+      номери карток
+    </button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orders">
+    <th scope="row">{{order.id}}</th>
+    <td >{{order.created | date:'short'}}</td>
+    <td>{{order.lastNameUA}}</td>
+    <td>{{order.firstNameUA}}</td>
+    <td>{{order.lastNameEN}}</td>
+    <td>{{order.firstNameEN}}</td>
+    <td>{{order.operatorFullName}}</td>
+    <td>{{order.cardType}}</td>
+    <td>{{order.cardNumber}}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+</div>
